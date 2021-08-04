@@ -12,6 +12,9 @@ const useStyles = makeStyles({
     cartTitleHeader: {
         color: 'white',
         fontWeight: 'bold'
+    },
+    cartLink: {
+        textDecoration: 'none'
     }
 });
 

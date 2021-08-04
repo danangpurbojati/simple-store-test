@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { ProductContext } from '../../contexts/ProductContext';
 import { Link } from 'react-router-dom';
-import Cart from '../Cart';
-import Navbar from '../Navbar';
+import Cart from '../../components/Cart';
+import Navbar from '../../components/Navbar';
 import { Card, Container, Grid, Table, TableBody, Typography } from '@material-ui/core';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';

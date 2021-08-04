@@ -5,13 +5,14 @@ const useStyles = makeStyles({
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        textAlign: 'center'
     },
     authMargin: {
         marginBottom: '16px'
     },
-    linkStyle: {
-        textTransform: 'capitalize'
+    authLink: {
+        textTransform: 'capitalize',
     }
 });
 

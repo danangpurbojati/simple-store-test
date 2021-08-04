@@ -2,8 +2,8 @@ import React, { useEffect, useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { CartContext } from '../../contexts/CartContext';
 import { ProductContext } from '../../contexts/ProductContext';
-import Cart from '../Cart';
-import Navbar from '../Navbar';
+import Cart from '../../components/Cart';
+import Navbar from '../../components/Navbar';
 import formatRupiah from '../../utils/formatRupiah';
 
 import { Button, Card, CardContent, Container, Grid, TextField, Typography } from '@material-ui/core';
@@ -13,7 +13,7 @@ const ProductDetail = () => {
     const classes = useStyles();
     const { id } = useParams();
     const { storeProducts, reduceStock } = useContext(ProductContext);
-    const { cart, addItem } =  useContext(CartContext);
+    const { addItem } =  useContext(CartContext);
     const [product, setProduct] = useState();
     const [ amount, setAmount] = useState(0);
 

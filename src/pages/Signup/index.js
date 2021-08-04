@@ -96,7 +96,7 @@ const SignUp = () => {
                         fullWidth 
                         onClick={() => socialAuth(googleProvider)}
                     >
-                        login dengan google
+                        daftar dengan google
                     </Button> 
                     <Button
                         className={classes.authMargin}
@@ -104,7 +104,7 @@ const SignUp = () => {
                         fullWidth 
                         onClick={() => socialAuth(githubProvider)}
                     >
-                        login dengan github
+                        daftar dengan github
                     </Button>
 
                 </CardContent>

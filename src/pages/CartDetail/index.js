@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { CartContext } from '../../contexts/CartContext';
 import { useHistory } from 'react-router-dom';
-import Navbar from '../Navbar';
+import Navbar from '../../components/Navbar';
 import { Button, Card, CardContent, Container, Table, TableBody, TableCell, TableFooter, TableHead, TableRow, Typography } from '@material-ui/core';
 import useStyles from './cartDetailStyles';
 import formatRupiah from '../../utils/formatRupiah';

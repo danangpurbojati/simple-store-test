@@ -5,14 +5,14 @@ import {
 } from 'react-router-dom'
 
 import './App.css';
-import CartDetail from './components/CartDetail';
-import Home from './components/Home';
-
-import Login from './components/Login';
-import ProductDetail from './components/ProductDetail';
 import ProtectedRoute from './components/ProtectedRoute';
 import RegisteredRoute from './components/RegisteredRoute';
-import SignUp from './components/Signup';
+
+import CartDetail from './pages/CartDetail';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import ProductDetail from './pages/ProductDetail';
+import SignUp from './pages/Signup';
 
 import AuthContextProvider from './contexts/AuthContext';
 import CartContextProvider from './contexts/CartContext';

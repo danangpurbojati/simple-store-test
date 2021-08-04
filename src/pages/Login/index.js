@@ -111,7 +111,7 @@ const Login = () => {
                         login dengan github
                     </Button>
 
-                    <Link className={classes.linkStyle} to="/signup">belum punya akun? Daftar disini</Link> 
+                    <Link className={classes.authLink} to="/signup">belum punya akun? Daftar disini</Link> 
                 </CardContent>
             </Card>
         </Container>

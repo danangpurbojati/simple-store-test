@@ -58,7 +58,7 @@ const Cart = () => {
                             </TableBody>
                         </Table>
 
-                        <Link to="/cart-detail">
+                        <Link className={classes.cartLink} to="/cart-detail">
                             <Button variant="contained" fullWidth>
                                 Checkout
                             </Button>
