@@ -1,63 +1,75 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
 import { ProductContext } from '../../contexts/ProductContext';
 import { Link } from 'react-router-dom';
 import Cart from '../Cart';
-
+import Navbar from '../Navbar';
+import { Card, Container, Grid, Table, TableBody, Typography } from '@material-ui/core';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Chip from '@material-ui/core/Chip';
+import useStyles from './homeStyles.js';
+import formatRupiah from '../../utils/formatRupiah';
 const Home = () => {
-    const { logout, activeUser } = useContext(AuthContext);
+    const classes = useStyles();
     const { storeProducts } = useContext(ProductContext);
-
-    const testlogout = async () => {
-        try {
-            const logoutData = await logout();
-            console.log('logout', logoutData)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     return (
         <div>
-            <h1>Simple Store</h1>
-            {
-                activeUser && (
-                    <h3>hallo {activeUser.email}</h3>
-                )
-            }
-            <button onClick={testlogout}>logout</button>
+            <Navbar />
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Gambar</th>
-                        <th>Nama</th>
-                        <th>Harga</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        storeProducts.map(product => (
-                            <tr key={product.id}>
-                                <td>
-                                    <img src={product.image} alt={product.name} />
-                                </td>
-                                <td>
-                                    {product.name}
-                                </td>
-                                <td>
-                                    {product.price}
-                                </td>
-                                <td>
-                                    <Link to={`/products/${product.id}`}>lihat detail</Link>
-                                </td>
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
-            <Cart />
+            <Container>
+                <Typography className={classes.homeTitle} variant="h4" align="center">Pilih Belanjaanmu</Typography>
+
+                <Grid container spacing={3}>
+                    <Grid xs={8} item>
+                        <Card>
+                            <Table>
+                                <TableHead className={classes.tableHead}>
+                                    <TableRow>
+                                        <TableCell className={classes.tableTitle} align="center" colSpan={2}>
+                                            Produk
+                                        </TableCell>
+                                        <TableCell className={classes.tableTitle} align="center">
+                                            Harga
+                                        </TableCell>
+                                        <TableCell className={classes.tableTitle} align="center">
+                                            Aksi
+                                        </TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    
+                                    {
+                                        storeProducts.map(product => (
+                                            <TableRow key={product.id}>
+                                                <TableCell align="center">
+                                                    <img className={classes.productImage} src={product.image} alt={product.name} />
+                                                </TableCell>
+                                                <TableCell align="left">
+                                                    <Typography className={classes.productName}>
+                                                        {product.name}
+                                                    </Typography>
+                                                </TableCell>
+                                                <TableCell align="center">
+                                                    {formatRupiah(product.price)}
+                                                </TableCell>
+                                                <TableCell align="center">
+                                                    <Link className={classes.productLink} to={`/products/${product.id}`}>
+                                                        <Chip clickable color="secondary" variant="outlined" size="small" label="detail" />
+                                                    </Link>
+                                                </TableCell>
+                                            </TableRow>
+                                        ))
+                                    }
+                                </TableBody>
+                            </Table>
+                        </Card>
+                    </Grid>
+                    <Grid xs={4} item>
+                        <Cart />
+                    </Grid>
+                </Grid>
+            </Container>
         </div>
     )
 }

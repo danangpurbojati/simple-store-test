@@ -24,7 +24,7 @@ const App = () => {
             <AuthContextProvider>
                 <ProductContextProvider>
                     <CartContextProvider>
-                        <div className="App">
+                        <div>
                             <Switch>
                                 <ProtectedRoute exact path="/">
                                     <Home />

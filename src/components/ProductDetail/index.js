@@ -3,8 +3,14 @@ import { useParams } from 'react-router-dom';
 import { CartContext } from '../../contexts/CartContext';
 import { ProductContext } from '../../contexts/ProductContext';
 import Cart from '../Cart';
+import Navbar from '../Navbar';
+import formatRupiah from '../../utils/formatRupiah';
+
+import { Button, Card, CardContent, Container, Grid, TextField, Typography } from '@material-ui/core';
+import useStyles from './productDetailStyles';
 
 const ProductDetail = () => {
+    const classes = useStyles();
     const { id } = useParams();
     const { storeProducts, reduceStock } = useContext(ProductContext);
     const { cart, addItem } =  useContext(CartContext);
@@ -13,14 +19,14 @@ const ProductDetail = () => {
 
     const amountChange = (event) => {
         setAmount(event.target.value)
-    }
+    };
 
     const addProduct = (event) => {
         event.preventDefault();
         addItem(product, parseInt(amount));
         reduceStock(id, parseInt(amount));
         setAmount(0)
-    }
+    };
     
     useEffect(() => {
         const filterProductById = (id) => {
@@ -29,31 +35,58 @@ const ProductDetail = () => {
         };
 
         filterProductById(id);
-    })
+    });
 
-    console.log(cart)
     return (
         <div>
-            <h1>halaman product detail</h1>
-            <h4>product id {id}</h4>
+            <Navbar />
+                <Typography align="center" variant="h4" className={classes.title}>Detail Produk</Typography>
 
-            {
-                product && (
-                    <div>
-                        <img src={product.image} alt={product.name} />
-                        <h1>{product.name}</h1>
-                        <p>{product.description}</p>
-                        <p>{product.price}</p>
-                        <p>{product.stock}</p>
-                        <form onSubmit={addProduct}>
-                            <input value={amount} onChange={amountChange} type="number" min="0" max={product.stock} />
-                            <button type="submit" disabled={product.stock === 0}>beli</button>
-                        </form>
-                    </div>
-                )
-            }
-
-            <Cart />
+            <Container>
+                <Grid container spacing={3}>
+                    <Grid item xs={8}>
+                        <Card>
+                            <CardContent>
+                                {
+                                    product && (
+                                        <Grid container spacing={2}>
+                                            <Grid item xs={4}>
+                                                <img src={product.image} alt={product.name} />
+                                            </Grid>
+                                            <Grid item xs={8}>
+                                                <div className={classes.productInfo}>
+                                                    <Typography className={classes.productDesc}>Nama Produk:</Typography>
+                                                    <Typography>{product.name}</Typography>
+                                                </div>
+                                                <div className={classes.productInfo}>
+                                                    <Typography className={classes.productDesc}>Deskripsi:</Typography>
+                                                    <Typography>{product.description}</Typography>
+                                                </div>
+                                                <div className={classes.productInfo}>
+                                                    <Typography className={classes.productDesc}>Harga:</Typography>
+                                                    <Typography>{formatRupiah(product.price)}</Typography>
+                                                </div>
+                                                <div>
+                                                    <Typography className={classes.productDesc}>Jumlah Stok:</Typography>
+                                                    <Typography>{product.stock}</Typography>
+                                                </div>
+                                                <form className={classes.form} onSubmit={addProduct}>
+                                                    <Typography className={classes.productDesc}>Jumlah Pembelian</Typography>
+                                                    <TextField variant="outlined" size="small" className={classes.input} value={amount} onChange={amountChange} type="number" min="0" max={product.stock} />
+                                                    <Button variant="contained" type="submit" disabled={product.stock === 0 || amount === 0}>Tambahkan Ke Keranjang</Button>
+                                                </form>
+                                            </Grid>
+                                        </Grid>
+                                    )
+                                }
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                    <Grid item xs={4}>
+                        <Cart />
+                    </Grid>
+                </Grid>
+            </Container>            
         </div>
     )
 }
