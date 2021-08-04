@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import { ProductContext } from '../../contexts/ProductContext';
 import { Link } from 'react-router-dom';
+import Cart from '../Cart';
 
 const Home = () => {
     const { logout, activeUser } = useContext(AuthContext);
@@ -15,8 +16,6 @@ const Home = () => {
             console.log(error)
         }
     }
-
-    console.log(storeProducts)
 
     return (
         <div>
@@ -58,6 +57,7 @@ const Home = () => {
                     }
                 </tbody>
             </table>
+            <Cart />
         </div>
     )
 }

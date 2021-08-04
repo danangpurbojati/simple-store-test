@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom'
 
 import './App.css';
+import CartDetail from './components/CartDetail';
 import Home from './components/Home';
 
 import Login from './components/Login';
@@ -14,6 +15,7 @@ import RegisteredRoute from './components/RegisteredRoute';
 import SignUp from './components/Signup';
 
 import AuthContextProvider from './contexts/AuthContext';
+import CartContextProvider from './contexts/CartContext';
 import ProductContextProvider from './contexts/ProductContext';
 
 const App = () => {
@@ -21,22 +23,27 @@ const App = () => {
         <Router>
             <AuthContextProvider>
                 <ProductContextProvider>
-                    <div className="App">
-                        <Switch>
-                            <ProtectedRoute exact path="/">
-                                <Home />
-                            </ProtectedRoute>
-                            <ProtectedRoute path="/products/:id">
-                                <ProductDetail />
-                            </ProtectedRoute>
-                            <RegisteredRoute path="/login">
-                                <Login />
-                            </RegisteredRoute>
-                            <RegisteredRoute path="/signup">
-                                <SignUp />
-                            </RegisteredRoute>
-                        </Switch>
-                    </div>
+                    <CartContextProvider>
+                        <div className="App">
+                            <Switch>
+                                <ProtectedRoute exact path="/">
+                                    <Home />
+                                </ProtectedRoute>
+                                <ProtectedRoute path="/cart-detail">
+                                    <CartDetail />
+                                </ProtectedRoute>
+                                <ProtectedRoute path="/products/:id">
+                                    <ProductDetail />
+                                </ProtectedRoute>
+                                <RegisteredRoute path="/login">
+                                    <Login />
+                                </RegisteredRoute>
+                                <RegisteredRoute path="/signup">
+                                    <SignUp />
+                                </RegisteredRoute>
+                            </Switch>
+                        </div>
+                    </CartContextProvider>
                 </ProductContextProvider>
             </AuthContextProvider>
         </Router>

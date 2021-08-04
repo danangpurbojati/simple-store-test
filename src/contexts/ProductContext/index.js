@@ -6,8 +6,33 @@ export const ProductContext = createContext();
 const ProductContextProvider = ({ children }) => {
     const [storeProducts, setStoreProducts] = useState(products);
 
+    const reduceStock = (id, amount) => {
+        setStoreProducts(
+            storeProducts.map(product => (
+                { 
+                    ...product,
+                    stock: product.id === id ? product.stock - parseInt(amount) : product.stock
+                }
+            ))
+        )
+    }
+
+    const restoreStock = (id, amount) => {
+        setStoreProducts(
+            storeProducts.map(product => (
+                {
+                    ...product,
+                    stock: product.id === id ? product.stock + parseInt(amount) : product.stock
+                }
+            ))
+        )
+    }
+
     const value = {
-        storeProducts
+        storeProducts,
+        reduceStock,
+        restoreStock,
+        setStoreProducts
     }
     return (
         <ProductContext.Provider value={value}>

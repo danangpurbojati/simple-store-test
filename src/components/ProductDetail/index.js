@@ -1,10 +1,13 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { CartContext } from '../../contexts/CartContext';
 import { ProductContext } from '../../contexts/ProductContext';
+import Cart from '../Cart';
 
 const ProductDetail = () => {
     const { id } = useParams();
-    const { storeProducts } = useContext(ProductContext);
+    const { storeProducts, reduceStock } = useContext(ProductContext);
+    const { cart, addItem } =  useContext(CartContext);
     const [product, setProduct] = useState();
     const [ amount, setAmount] = useState(0);
 
@@ -12,21 +15,23 @@ const ProductDetail = () => {
         setAmount(event.target.value)
     }
 
-    const addProduct = () => {
-        console.log('tambah', amount);
+    const addProduct = (event) => {
+        event.preventDefault();
+        addItem(product, parseInt(amount));
+        reduceStock(id, parseInt(amount));
         setAmount(0)
     }
-
-    const filterProductById = () => {
-        const productById = storeProducts.filter(product => product.id === id)[0];
-        setProduct(productById);
-    };
-
+    
     useEffect(() => {
+        const filterProductById = (id) => {
+            const productById = storeProducts.filter(product => product.id === id)[0];
+            setProduct(productById);
+        };
 
-        filterProductById();
-    }, [id])
+        filterProductById(id);
+    })
 
+    console.log(cart)
     return (
         <div>
             <h1>halaman product detail</h1>
@@ -40,12 +45,15 @@ const ProductDetail = () => {
                         <p>{product.description}</p>
                         <p>{product.price}</p>
                         <p>{product.stock}</p>
-                        <input value={amount} onChange={amountChange} type="number" />
-                        <button onClick={addProduct}>beli</button>
+                        <form onSubmit={addProduct}>
+                            <input value={amount} onChange={amountChange} type="number" min="0" max={product.stock} />
+                            <button type="submit" disabled={product.stock === 0}>beli</button>
+                        </form>
                     </div>
                 )
             }
 
+            <Cart />
         </div>
     )
 }
