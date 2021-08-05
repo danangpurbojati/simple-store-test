@@ -13,7 +13,7 @@ const Navbar = () => {
         await logout()
     }
     return (
-        <AppBar position="static">
+        <AppBar className={classes.navbar} position="static">
             <Container>
                 <Toolbar className={classes.navWrapper}>
                     <Link className={classes.navLink} to="/">
@@ -25,7 +25,7 @@ const Navbar = () => {
                         <Avatar>{activeUser.email.charAt(0)}</Avatar>
                         <div className={classes.userDropdown}>
                             <Typography className={classes.userName}>{activeUser.email}</Typography>
-                            <Button onClick={clickLogout} className={classes.logoutButton} variant="contained" fullWidth size="small" color="primary">logout</Button>
+                            <Button onClick={clickLogout} className={classes.logoutButton} variant="contained" fullWidth size="small">logout</Button>
                         </div>
                     </div>
                 </Toolbar>

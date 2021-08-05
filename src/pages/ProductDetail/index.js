@@ -44,7 +44,7 @@ const ProductDetail = () => {
 
             <Container>
                 <Grid container spacing={3}>
-                    <Grid item xs={8}>
+                    <Grid item xs={12} md={8}>
                         <Card>
                             <CardContent>
                                 {
@@ -82,7 +82,7 @@ const ProductDetail = () => {
                             </CardContent>
                         </Card>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={12} md={4}>
                         <Cart />
                     </Grid>
                 </Grid>

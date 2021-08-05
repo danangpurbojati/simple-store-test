@@ -1,6 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
+    navbar: {
+        backgroundColor: 'black',
+        marginBottom: '24px',
+    },
     navWrapper: {
         display: 'flex',
         alignItems: 'center',
