@@ -5,20 +5,17 @@ import Navbar from '../../components/Navbar';
 import { Button, Card, CardContent, Container, Table, TableBody, TableCell, TableFooter, TableHead, TableRow, Typography } from '@material-ui/core';
 import useStyles from './cartDetailStyles';
 import formatRupiah from '../../utils/formatRupiah';
+import sumPrice from '../../utils/sumPrice';
 
 const CartDetail = () => {
     const classes = useStyles();
-    const { cart, clearCart } =  useContext(CartContext);
+    const { cart } =  useContext(CartContext);
     const history = useHistory();
 
     const stripeButton = () => {
-        clearCart();
-        history.push("/")
+        history.push("/payment");
     }
 
-    const sumPrice = (items) => {
-        return items.reduce((acc, curr) => acc + (curr.price * curr.qty), 0)
-    }
     return (
         <div>
             <Navbar />
@@ -78,7 +75,7 @@ const CartDetail = () => {
                                     <Button variant="contained" fullWidth onClick={stripeButton}>Pembayaran</Button>
                                 </div>
                             ) : (
-                                <h1>tidak ada barang</h1>
+                                <Typography align="center">tidak ada barang</Typography>
                             )
                         }
                     </CardContent>

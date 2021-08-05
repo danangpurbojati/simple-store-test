@@ -21,7 +21,7 @@ const Home = () => {
                 <Typography className={classes.homeTitle} variant="h4" align="center">Pilih Belanjaanmu</Typography>
 
                 <Grid container spacing={3}>
-                    <Grid xs={8} item>
+                    <Grid xs={12} md={8} item>
                         <Card>
                             <Table>
                                 <TableHead className={classes.tableHead}>
@@ -65,7 +65,7 @@ const Home = () => {
                             </Table>
                         </Card>
                     </Grid>
-                    <Grid xs={4} item>
+                    <Grid xs={12} md={4} item>
                         <Cart />
                     </Grid>
                 </Grid>

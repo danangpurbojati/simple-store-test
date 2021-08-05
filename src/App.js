@@ -17,6 +17,8 @@ import SignUp from './pages/Signup';
 import AuthContextProvider from './contexts/AuthContext';
 import CartContextProvider from './contexts/CartContext';
 import ProductContextProvider from './contexts/ProductContext';
+import Payment from './pages/Payment';
+import PaymentSuccess from './pages/PaymentSuccess';
 
 const App = () => {
     return (
@@ -34,6 +36,12 @@ const App = () => {
                                 </ProtectedRoute>
                                 <ProtectedRoute path="/products/:id">
                                     <ProductDetail />
+                                </ProtectedRoute>
+                                <ProtectedRoute path="/payment">
+                                    <Payment />
+                                </ProtectedRoute>
+                                <ProtectedRoute path="/payment-success">
+                                    <PaymentSuccess />
                                 </ProtectedRoute>
                                 <RegisteredRoute path="/login">
                                     <Login />
